@@ -1,1 +1,28 @@
-qiueo
+.header
+  .header__title
+    = link_to 'picdiary.',root_path
+  .header__login
+    %ul
+      - if user_signed_in?
+        %li=link_to "新規投稿",new_post_path
+        %li=link_to "ログアウト",destroy_user_session_path, method: :delete
+      - else
+        %li=link_to "ログイン",new_user_session_path
+        %li=link_to "新規登録", new_user_registration_path
+.nav
+- if user_signed_in?
+  .main
+    - @posts.each do |post|
+      = link_to post_path(post.id) ,class:"link"do
+        .contents
+          .contents__img{style: "background-image: url(#{post.image});"}
+          .contents__row
+            %p.contents__subject
+              = post.subject
+            %span.name
+              = post.user.nickname
+- else
+  .wrap
+    .top-image-container
+      = image_tag "book-1869969_1920.jpg", class:"top-image"
+      %p.image__label 記録していこう！
