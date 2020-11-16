@@ -1,0 +1,18 @@
+.header
+  .header__title
+    = link_to 'picdiary.',root_path
+  .header__login
+    %ul
+      %li=link_to "新規投稿",new_post_path
+      %li=link_to "ログアウト",destroy_user_session_path, method: :delete
+.detail
+  .detail__main
+    %h2.detail__main__title
+      = @post.subject
+    .detail__main__image
+      = image_tag @post.image,class:"detail__main__image__size"
+    .detail__main__text
+      = @post.text
+    .manage
+      = link_to "編集", edit_post_path(@post.id),class:"manage__edit__btn"
+      = link_to "削除", post_path(@post.id), method: :delete,class:"manage__delete__btn"
