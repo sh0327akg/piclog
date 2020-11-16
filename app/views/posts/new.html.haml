@@ -1,0 +1,19 @@
+.header
+  .header__title
+    = link_to 'picdiary.',root_path
+  .header__login
+    %ul
+      %li=link_to "ログアウト",destroy_user_session_path, method: :delete
+.form__main
+  = form_with(model: @post, local: true) do |f|
+    %h2.form-title 新規投稿
+    .form
+      .form__img
+        = f.text_field :image, class: "input-area", placeholder: "Image URL"
+      .form__subject
+        = f.text_field :subject, class: "input-area", placeholder: "Subject"
+      .form__textarea
+        = f.text_area :text, class:"input-textarea", placeholder: "Text" , rows: "15"
+      .submit
+        = f.submit "SEND",class:"submit__btn"
+      = link_to "もどる",root_path,class:"rtn-btn"
